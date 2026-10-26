@@ -1,27 +1,23 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    public static void main(String[] args) {
+        Scanner br = new Scanner(System.in);
 
-        int count = Integer.parseInt(br.readLine());
+        int count = br.nextInt();
 
-        int[] numbersToAdd = new int[count];
+        ArrayDeque<Integer> stack = new ArrayDeque<>();
 
-        int total = 0;
-
-        for(int i = 0; i < count; i++) numbersToAdd[i] = Integer.parseInt(br.readLine());
-
-        for(int k = 1; k < numbersToAdd.length; k++){
-            if(numbersToAdd[k] == 0) numbersToAdd[k - 1] = 0;
+        for(int i = 0; i < count; i++){
+            int n = br.nextInt();
+            if(n == 0) stack.pop();
+            else stack.push(n);
         }
 
-        for(int m = 0; m < numbersToAdd.length; m++) total += numbersToAdd[m];
+        int total = 0;
+        for(int n : stack) total += n;
 
         System.out.println(total);
-        
-
     }
 }
